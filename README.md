@@ -27,19 +27,19 @@ Antes de instalar o projeto, certifique-se de ter os seguintes requisitos:
 ## ⚙️ Instalação e Configuração
 
 ## 1️⃣ **Clonar o repositório**
-git clone https://github.com/RafaelBSilva5894/event-manager.git
+        git clone https://github.com/RafaelBSilva5894/event-manager.git
 
-cd event-manager
+        cd event-manager
 
 ## 2️⃣ Instalar dependências
-composer install
+        composer install
 
-npm install
+        npm install
 
 ## 3️⃣ Configurar o arquivo .env
 Crie uma cópia do arquivo .env.example e renomeie para .env:
 
-cp .env.example .env
+        cp .env.example .env
 
 Agora, edite o arquivo .env e configure os dados do banco de dados:
 
@@ -57,13 +57,13 @@ DB_PASSWORD=sua_senha
 
 
 ## 4️⃣ Gerar chave da aplicação
-php artisan key:generate
+        php artisan key:generate
 
 ## 5️⃣ Criar o banco de dados e rodar as migrations
-php artisan migrate --seed
+        php artisan migrate --seed
 
 ## 6️⃣ Iniciar o servidor Laravel
-php artisan serve
+        php artisan serve
 
 Agora, acesse no navegador:
 🔗 http://127.0.0.1:8000
@@ -108,13 +108,59 @@ Agora, acesse no navegador:
 ## ✅ Executando os Testes
 Para rodar os testes automatizados com PHPUnit, utilize o comando:
 
-php artisan test
+        php artisan test
 
 Para rodar um teste específico:
 
-php artisan test --filter NomeDoTeste
+        php artisan test --filter NomeDoTeste
 
 ---
+
+## 📧 Testando o Envio de E-mails com MailHog
+
+Durante o desenvolvimento, podemos usar o MailHog para capturar e-mails enviados pelo sistema sem precisar de um servidor SMTP real.
+
+## 1️⃣ Instalar o MailHog
+
+Se você usa Linux ou Mac, pode instalar o MailHog via Homebrew:
+
+        brew install mailhog
+No Windows, baixe o executável diretamente do repositório oficial e extraia o arquivo.
+
+## 2️⃣ Configurar o Laravel para usar o MailHog
+Edite o arquivo .env e configure as seguintes variáveis para o MailHog:
+
+MAIL_MAILER=smtp
+
+MAIL_HOST=127.0.0.1
+
+MAIL_PORT=1025
+
+MAIL_USERNAME=null
+
+MAIL_PASSWORD=null
+
+MAIL_ENCRYPTION=null
+
+MAIL_FROM_ADDRESS="noreply@eventmanager.com"
+
+MAIL_FROM_NAME="Event Manager"
+
+## 3️⃣ Executar o MailHog
+Após a instalação, inicie o MailHog com o comando:
+           
+        mailhog
+Agora, todos os e-mails enviados pela aplicação ficarão disponíveis na interface web do MailHog. Acesse pelo navegador:
+
+🔗 http://127.0.0.1:8025
+
+
+## 4️⃣ Testando o envio de e-mails
+Para testar se os e-mails estão sendo enviados corretamente, você pode rodar este comando no Tinker:
+
+        php artisan tinker
+---
+
 
 ## 🎯 Uso da Aplicação
 
